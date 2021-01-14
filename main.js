@@ -1,21 +1,3 @@
-let a = 5;
-let b = 10;
-
-console.log(a, b);
-
-document.write("<p>数字" + a + "です<br>");
-
-let today = new Date();
-document.write(
-  "今日の日付は" +
-    today.getFullYear() +
-    "年" +
-    (today.getMonth() + 1) +
-    "月" +
-    today.getDate() +
-    "日です"
-);
-
 // var addZero = function (value) {
 //   if (value < 10) {
 //     value = "0" + value;
@@ -41,24 +23,31 @@ var addZero = function (value) {
   return value;
 };
 
+// 秒、分、時オブジェクト定義
 let clock = {
   seconds: this,
   minutes: this,
   hours: this,
 };
 let start;
+let stop;
 let timer_id;
-let f = 0;
+let f;
+let diff;
+
+// スタート、停止ボタンがクリックされたとき
 document.getElementById("start_stop").addEventListener("click", function () {
   if (this.innerHTML === "START") {
     start = new Date();
-
     timer_id = setInterval(goTimer, 10);
     this.classList.remove("btn-primary");
     this.classList.add("btn-danger");
     this.innerHTML = "STOP";
-    f = 1;
   } else {
+    stop = new Date();
+    let startTime = start.getTime();
+    diff = stop.getTime() - startTime;
+    f = 1;
     clearInterval(timer_id);
     this.classList.remove("btn-danger");
     this.classList.add("btn-primary");
@@ -68,18 +57,16 @@ document.getElementById("start_stop").addEventListener("click", function () {
 
 let goTimer = function () {
   let now = new Date();
-
-  let milli = now.getTime() - start.getTime();
+  let nowTime = now.getTime();
+  let startTime = start.getTime();
+  let milli;
   if (f === 1) {
-    clock.seconds =
-      Math.floor(milli / 1000) +
-      clock.seconds +
-      clock.minutes * 60 +
-      clock.hours * 3600;
-    f = 0;
+    milli = nowTime - startTime + diff;
   } else {
-    clock.seconds = Math.floor(milli / 1000);
+    milli = nowTime - startTime;
   }
+
+  clock.seconds = Math.floor(milli / 1000);
   clock.minutes = Math.floor(clock.seconds / 60);
   clock.hours = Math.floor(clock.minutes / 60);
 
@@ -92,8 +79,3 @@ let goTimer = function () {
     ":" +
     addZero(clock.seconds);
 };
-
-// let div = function(value) {
-//     value = value % 60;
-//     return value;
-// }
