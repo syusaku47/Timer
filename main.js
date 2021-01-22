@@ -78,6 +78,4 @@ let goTimer = function () {
     addZero(clock.minutes) +
     ":" +
     addZero(clock.seconds);
-
-  // ああああああ
 };
