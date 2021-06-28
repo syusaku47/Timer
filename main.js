@@ -16,6 +16,45 @@
 //     addZero(hours) + ":" + addZero(minutes) + ":" + addZero(seconds);
 // });
 
+// var obj = {
+//   15: { name: "masuda", age: 10 },
+//   20: { name: "saori", age: 20 },
+//   // 15:{{name:"masuda"},{age:31}}
+//   // 20:{name:"saori",age:32}
+// };
+
+// Object(obj).array.forEach((element) => {});
+
+// let arr = [1, 2, 3];
+// let arr2 = [3, 2, 1];
+// let arr3 = [];
+// arr3[0] = arr;
+// arr3[1] = arr2;
+// arr += arr2;
+// console.log("arr", arr3);
+
+var arr = [1, 2, 3];
+// var obj = { 15: { tanuki: "pon-poko", kitsune: "kon-kon", neko: "nyan-nyan" } };
+var obj = { 15: { tanuki: "pon-poko", kitsune: "kon-kon", neko: "nyan-nyan" } };
+
+// function aa() {
+//   let a = 0;
+//   let b = 1;
+
+//   return { zero: a, one: b };
+// }
+// let ob;
+// ob = aa();
+// console.log("ob", ob);
+// console.log("ob", ob.zero);
+// console.log("ob", ob.one);
+
+// console.log(typeof obj);
+// console.log(typeof arr);
+Object.keys(obj).forEach(function (key) {
+  console.log(key + "は" + obj[key] + "と鳴いた！");
+});
+
 var addZero = function (value) {
   if (value < 10) {
     value = "0" + value;
@@ -78,6 +117,4 @@ let goTimer = function () {
     addZero(clock.minutes) +
     ":" +
     addZero(clock.seconds);
-
-  // ああああああ
 };
